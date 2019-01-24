@@ -3,7 +3,9 @@ package com.hottur.controller;
 import com.hottur.entity.Tur;
 import com.hottur.service.TurServices;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +30,7 @@ public class ControllerTur {
         return "tours";
     }
 
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add", method = RequestMethod.GET)
     public String addTour(Map<String, Object> model) {
         model.put("tour", new Tur());
         return "tourform";
@@ -41,37 +43,31 @@ public class ControllerTur {
         }
         turServices.saveTur(tour);
         model.put("tour", turServices.listAllTur());
-
         return "redirect:/tours";
     }
 
-    @RequestMapping(value = "/edit/{id}")
-    public String editTour(@PathVariable("id") Long id, Map<String, Object> model) {
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    public String editTour(@PathVariable("id") Long id, @RequestParam String country, Map<String, Object> model) {
         Optional<Tur> tur = turServices.getTurById(id);
+        List<Tur> countries = turServices.getCountries(country);
         model.put("editTour", tur);
+        model.put("countries", countries);
         return "touredit";
     }
 
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
-    public String updateTour(@PathVariable(value = "id") Long id, @RequestParam String country, @Valid Tur tur, BindingResult result, Map<String, Object> model) {
+    @RequestMapping(value = "/update", method = RequestMethod.POST, headers = "Accept=application/x-www-form-urlencoded")
+    public String updateTour(@RequestParam("id") Long id, @Valid Tur tur, @RequestParam String country, BindingResult result, Map<String, Object> model) {
+        Optional<Tur> turById = turServices.getTurById(id);
+
         if (result.hasErrors()) {
-            tur.setId(id);
             return "touredit";
         }
 
-        tur.setDateMassage(tur.getDateMassage());
-        tur.setNameTur(tur.getNameTur());
-        tur.setNameTurOperator(tur.getNameTurOperator());
-        tur.setCountry(tur.getCountry());
-        tur.setDateDeparture(tur.getDateDeparture());
-        tur.setTourPrice(tur.getTourPrice());
-
-
         turServices.saveTur(tur);
-        List<Tur> countries = turServices.getCountries(country);
+       // List<Tur> countries = turServices.getCountries(country);
         model.put("all_ListTur", turServices.listAllTur());
-        model.put("countries", countries);
-        return "redirect:/tours";
+       // model.put("countries", countries);
+        return "redirect:/tours" + turById;
     }
 
 

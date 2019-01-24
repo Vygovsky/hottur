@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -10,9 +11,14 @@
 <div align="center">
     <h1>Изменить тур</h1>
 </div>
-<form method="POST" action="/edit/{id}">
+<form method="POST" action="/update?id=${editTour.get().id}">
     <div class="form-style-6">
         <table>
+            <tr>
+                <td>Номер тура :</td>
+                <td><input type="hidden" value="${editTour.get().id}" readonly="readonly"/></td>
+            </tr>
+            <br/>
 
                 <td>Оператор :</td>
                 <td><input type="text" name="nameTurOperator"
@@ -38,19 +44,29 @@
                         <option value="Egypt">Egypt</option>
                         <option value="Usa">Usa</option>
                     </select>--%>
-                    <select name="countries">
+                <%--    <select name="countries">
                         <c:forEach var="countries" items="${countries}">
                             <option value="${countries.get().country}">${countries.get().country}</option>
                         </c:forEach>
 
-                    </select>
+                    </select>--%>
+            <tr>
+                <td>Country :</td>
+            <td><form:select path="country">
+                    <form:option value="0" label="--- Select ---" />
+                <c:forEach var="theUser" items="${countries}">
+                    <form:option value="${theUser.country.toString()}"><c:out value="${theUser.country}"/></form:option>
+                </c:forEach>
+                </form:select>
+                <%--<td><form:errors path="country" cssClass="error" /></td>--%>
+            </tr>
 
                 </label>
                 </td>
             </tr>
             <tr>
                 <td>Дата вылета :</td>
-                <td><input type="datetime-local" datatype="dateDeparture"
+                <td><input type="datetime-local" name="dateDeparture"
                     value="<c:out value="${editTour.get().dateDeparture}" />"/></td>
                 <br>
             </tr>

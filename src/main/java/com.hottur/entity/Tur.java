@@ -1,8 +1,12 @@
 package com.hottur.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -13,20 +17,23 @@ public class Tur {
     @NotNull(message = "Name is mandatory")
     private String nameTurOperator;
     @NotNull(message = "Date is mandatory")
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalDate dateMessage;
     @NotNull(message = "Hotel is mandatory")
     private String nameTur;
     @NotNull(message = "Country is mandatory")
     private String country;
     @NotNull(message = "Date is mandatory")
-    private LocalDate dateDeparture;
-    @NotNull
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+    private LocalDateTime dateDeparture;
+    @NotNull(message = "Price is mandatory")
     private int tourPrice;
 
     public Tur() {
     }
 
-    public Tur(Long id, String nameTurOperator, LocalDate dateMessage, String nameTur, String country, LocalDate dateDeparture, int tourPrice) {
+    public Tur(Long id, String nameTurOperator, LocalDate dateMessage, String nameTur, String country, LocalDateTime dateDeparture, int tourPrice) {
         this.id = id;
         this.nameTurOperator = nameTurOperator;
         this.dateMessage = dateMessage;
@@ -36,7 +43,7 @@ public class Tur {
         this.tourPrice = tourPrice;
     }
 
-    public Tur(String nameTurOperator, LocalDate dateMessage, String nameTur, String country, LocalDate dateDeparture, int tourPrice) {
+    public Tur(String nameTurOperator, LocalDate dateMessage, String nameTur, String country, LocalDateTime dateDeparture, int tourPrice) {
         this.nameTurOperator = nameTurOperator;
         this.dateMessage = dateMessage;
         this.nameTur = nameTur;
@@ -86,11 +93,11 @@ public class Tur {
         this.country = country;
     }
 
-    public LocalDate getDateDeparture() {
+    public LocalDateTime getDateDeparture() {
         return dateDeparture;
     }
 
-    public void setDateDeparture(LocalDate dateDeparture) {
+    public void setDateDeparture(LocalDateTime dateDeparture) {
         this.dateDeparture = dateDeparture;
     }
 
@@ -101,5 +108,7 @@ public class Tur {
     public void setTourPrice(int tourPrice) {
         this.tourPrice = tourPrice;
     }
+
+
 }
 
