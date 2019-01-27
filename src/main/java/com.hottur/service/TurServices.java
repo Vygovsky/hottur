@@ -20,6 +20,6 @@ public interface TurServices {
 
     void deleteTur(Long id);
 
-    List<Tur> getCountries(String nameCountry);
+    List<Tur> getCountries(Long id);
 
 }

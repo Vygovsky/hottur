@@ -17,13 +17,15 @@ public class Tur {
     @NotNull(message = "Name is mandatory")
     private String nameTurOperator;
     @NotNull(message = "Date is mandatory")
-    @JsonFormat(pattern="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalDate dateMessage;
     @NotNull(message = "Hotel is mandatory")
     private String nameTur;
     @NotNull(message = "Country is mandatory")
-    private String country;
+    @OneToOne(mappedBy = "country", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY/*, optional = false*/)
+    private Long country_id;
     @NotNull(message = "Date is mandatory")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateDeparture;
@@ -33,21 +35,21 @@ public class Tur {
     public Tur() {
     }
 
-    public Tur(Long id, String nameTurOperator, LocalDate dateMessage, String nameTur, String country, LocalDateTime dateDeparture, int tourPrice) {
+    public Tur(Long id, String nameTurOperator, LocalDate dateMessage, String nameTur, Long country_id, LocalDateTime dateDeparture, int tourPrice) {
         this.id = id;
         this.nameTurOperator = nameTurOperator;
         this.dateMessage = dateMessage;
         this.nameTur = nameTur;
-        this.country = country;
+        this.country_id = country_id;
         this.dateDeparture = dateDeparture;
         this.tourPrice = tourPrice;
     }
 
-    public Tur(String nameTurOperator, LocalDate dateMessage, String nameTur, String country, LocalDateTime dateDeparture, int tourPrice) {
+    public Tur(String nameTurOperator, LocalDate dateMessage, String nameTur, Long country_id, LocalDateTime dateDeparture, int tourPrice) {
         this.nameTurOperator = nameTurOperator;
         this.dateMessage = dateMessage;
         this.nameTur = nameTur;
-        this.country = country;
+        this.country_id = country_id;
         this.dateDeparture = dateDeparture;
         this.tourPrice = tourPrice;
     }
@@ -85,12 +87,12 @@ public class Tur {
         this.nameTur = nameTur;
     }
 
-    public String getCountry() {
-        return country;
+    public Long getCountry() {
+        return country_id;
     }
 
-    public void setCountry(String country) {
-        this.country = country;
+    public void setCountry(Long country) {
+        this.country_id = country;
     }
 
     public LocalDateTime getDateDeparture() {

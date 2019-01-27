@@ -49,7 +49,7 @@ public class TurServiceImp implements TurServices {
     }
 
     @Override
-    public List<Tur> getCountries(String nameCountry) {
-        return turRepository.getCountries(nameCountry);
+    public List<Tur> getCountries(Long id) {
+        return turRepository.getCountries(id);
     }
 }

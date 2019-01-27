@@ -5,13 +5,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface TurRepository extends CrudRepository<Tur, Long> {
-    @Query(value = "SELECT country from tur", nativeQuery = true)
-    List<Tur> getCountries(/*@Param("country")*/ String country);
+    @Query(value = "SELECT country FROM  tur where  id=:id;", nativeQuery = true)
+    List<Tur> getCountries(@RequestParam("id") Long id);
 
 }

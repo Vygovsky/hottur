@@ -11,7 +11,7 @@
 <div align="center">
     <h1>Изменить тур</h1>
 </div>
-<form method="POST" action="/update?id=${editTour.get().id}">
+<form:form method="POST" action="/update?id=${editTour.get().id}&countries=${editTour.get().id}">
     <div class="form-style-6">
         <table>
             <tr>
@@ -53,7 +53,7 @@
             <tr>
                 <td>Country :</td>
             <td><form:select path="country">
-                    <form:option value="0" label="--- Select ---" />
+                    <form:option value="NONE" label="--- Select ---" />
                 <c:forEach var="theUser" items="${countries}">
                     <form:option value="${theUser.country.toString()}"><c:out value="${theUser.country}"/></form:option>
                 </c:forEach>
@@ -81,7 +81,7 @@
             </tr>
         </table>
     </div>
-</form>
+</form:form>
 
 </body>
 </html>
