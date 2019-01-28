@@ -11,7 +11,7 @@ public class Country {
     @JoinColumn(name = "country_id")
     private Long id;
 
-    @NotNull(message = "Name is mandatory")
+    @NotNull(message = "Country name is mandatory")
     private String name;
 
     public Country() {

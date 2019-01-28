@@ -22,6 +22,7 @@ public class Tur {
     private LocalDate dateMessage;
     @NotNull(message = "Hotel is mandatory")
     private String nameTur;
+
     @NotNull(message = "Country is mandatory")
     @OneToOne(mappedBy = "country", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY/*, optional = false*/)
