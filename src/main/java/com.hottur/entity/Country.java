@@ -4,11 +4,10 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
+@Table(name = "counrty")
 public class Country {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "country_id")
     private Long id;
 
     @NotNull(message = "Country name is mandatory")

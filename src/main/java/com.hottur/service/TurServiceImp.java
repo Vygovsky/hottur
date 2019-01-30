@@ -1,6 +1,7 @@
 package com.hottur.service;
 
 import com.hottur.entity.Tur;
+import com.hottur.repository.CountryRepository;
 import com.hottur.repository.TurRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +13,12 @@ import java.util.Optional;
 public class TurServiceImp implements TurServices {
 
     private TurRepository turRepository;
+    private CountryRepository countryRepository;
+
+    @Autowired
+    public void setCountryRepository(CountryRepository countryRepository) {
+        this.countryRepository = countryRepository;
+    }
 
     @Autowired
     public void setTurRepository(TurRepository turRepository) {

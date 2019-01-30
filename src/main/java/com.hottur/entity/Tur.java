@@ -1,6 +1,8 @@
 package com.hottur.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -12,45 +14,50 @@ import java.time.LocalDateTime;
 @Entity
 public class Tur {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
+
     @NotNull(message = "Name is mandatory")
     private String nameTurOperator;
+
     @NotNull(message = "Date is mandatory")
     @JsonFormat(pattern = "yyyy-MM-dd")
     @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     private LocalDate dateMessage;
+
     @NotNull(message = "Hotel is mandatory")
     private String nameTur;
 
     @NotNull(message = "Country is mandatory")
-    @OneToOne(mappedBy = "country", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY/*, optional = false*/)
-    private Long country_id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @NotFound(action = NotFoundAction.IGNORE)
+    private Country country;
+
     @NotNull(message = "Date is mandatory")
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
     private LocalDateTime dateDeparture;
+
     @NotNull(message = "Price is mandatory")
     private int tourPrice;
 
     public Tur() {
     }
 
-    public Tur(Long id, String nameTurOperator, LocalDate dateMessage, String nameTur, Long country_id, LocalDateTime dateDeparture, int tourPrice) {
+    public Tur(Long id, String nameTurOperator, LocalDate dateMessage, String nameTur, Country country, LocalDateTime dateDeparture, int tourPrice) {
         this.id = id;
         this.nameTurOperator = nameTurOperator;
         this.dateMessage = dateMessage;
         this.nameTur = nameTur;
-        this.country_id = country_id;
+        this.country = country;
         this.dateDeparture = dateDeparture;
         this.tourPrice = tourPrice;
     }
 
-    public Tur(String nameTurOperator, LocalDate dateMessage, String nameTur, Long country_id, LocalDateTime dateDeparture, int tourPrice) {
+    public Tur(String nameTurOperator, LocalDate dateMessage, String nameTur, Country country, LocalDateTime dateDeparture, int tourPrice) {
         this.nameTurOperator = nameTurOperator;
         this.dateMessage = dateMessage;
         this.nameTur = nameTur;
-        this.country_id = country_id;
+        this.country = country;
         this.dateDeparture = dateDeparture;
         this.tourPrice = tourPrice;
     }
@@ -88,12 +95,12 @@ public class Tur {
         this.nameTur = nameTur;
     }
 
-    public Long getCountry() {
-        return country_id;
+    public Country getCountry() {
+        return country;
     }
 
-    public void setCountry(Long country) {
-        this.country_id = country;
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public LocalDateTime getDateDeparture() {
