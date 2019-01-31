@@ -55,8 +55,8 @@ public class TurServiceImp implements TurServices {
         turRepository.deleteById(id);
     }
 
-    @Override
+    /*@Override
     public List<Tur> getCountries(Long id) {
-        return turRepository.getCountries(id);
-    }
+        return null;
+    }*/
 }

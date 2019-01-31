@@ -13,7 +13,7 @@ import java.util.Optional;
 
 @Repository
 public interface TurRepository extends CrudRepository<Tur, Long> {
-    @Query(value = "SELECT country FROM  tur where  id=:id;", nativeQuery = true)
-    List<Tur> getCountries(@RequestParam("id") Long id);
+  /*  @Query(value = "SELECT country FROM  tur where  id=:id;", nativeQuery = true)
+    List<Tur> getCountries(@RequestParam("id") Long id);*/
 
 }

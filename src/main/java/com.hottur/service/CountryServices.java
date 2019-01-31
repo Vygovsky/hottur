@@ -4,5 +4,5 @@ import com.hottur.entity.Country;
 
 public interface CountryServices {
 
-    Country getCountryByName(Long country_id);
+   /* Country getCountryByName(Long country_id);*/
 }

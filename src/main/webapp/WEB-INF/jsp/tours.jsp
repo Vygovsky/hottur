@@ -111,8 +111,8 @@
             <td>${tours.dateDeparture}</td>
             <td>${tours.tourPrice}</td>
 
-                <%--td><a href="/delete/<c:out value='${tours.id}'/>">Delete</a></td>--%>
-            <td><a href="/edit/${tours.id}/{countryId}">Edit</a></td>
+
+            <td><a href="/edit/${tours.id}">Edit</a></td>
             <td><a href="/tour/delete/${tours.id}">Delete</a></td>
 
 

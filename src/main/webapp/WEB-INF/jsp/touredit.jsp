@@ -11,7 +11,7 @@
 <div align="center">
     <h1>Изменить тур</h1>
 </div>
-<form:form method="POST" action="/update?id=${editTour.get().id}&countries=${editTour.get().id}">
+<form:form method="POST" action="/update?id=${editTour.get().id}">
     <div class="form-style-6">
         <table>
             <tr>
@@ -79,6 +79,7 @@
             <tr>
                 <td><input type="submit" value="Отправить"></td>
             </tr>
+
         </table>
     </div>
 </form:form>
