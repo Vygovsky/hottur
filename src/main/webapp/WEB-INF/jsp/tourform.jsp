@@ -35,10 +35,9 @@
                     </c:forEach>--%>
                     <label>
                     <select name="country">
-                        <option selected value="Turkish">Turkish</option>
-                        <option value="Spain">Spain</option>
-                        <option value="Egypt">Egypt</option>
-                        <option value="Usa">Usa</option>
+                        <option selected value="1">Italy</option>
+                        <option value="2">Mexica</option>
+                        <option value="3">Zaluplandiya</option>
                     </select>
                 </label>
                 </td>

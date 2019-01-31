@@ -54,8 +54,8 @@
                 <td>Country :</td>
             <td><form:select path="country">
                     <form:option value="NONE" label="--- Select ---" />
-                <c:forEach var="theUser" items="${countries}">
-                    <form:option value="${theUser.country.toString()}"><c:out value="${theUser.country}"/></form:option>
+                <c:forEach var="country" items="${countries}">
+                    <form:option value="${country.country.toString()}"><c:out value="${country.country}"/></form:option>
                 </c:forEach>
                 </form:select>
                 <%--<td><form:errors path="country" cssClass="error" /></td>--%>

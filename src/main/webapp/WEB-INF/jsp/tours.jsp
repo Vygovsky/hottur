@@ -107,7 +107,7 @@
             <td>${tours.dateMassage}</td>
             <td>${tours.nameTurOperator}</td>
             <td>${tours.nameTur}</td>
-            <td>${tours.counrty.name}</td>
+            <td>${tours.country.name}</td>
             <td>${tours.dateDeparture}</td>
             <td>${tours.tourPrice}</td>
 

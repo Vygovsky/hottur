@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 @Entity
 public class Tur {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "tur_sequence")
+    @SequenceGenerator(name = "tur_sequence", sequenceName = "TUR_SEQ")
     private Long id;
 
     @NotNull(message = "Name is mandatory")
@@ -29,8 +30,9 @@ public class Tur {
     private String nameTur;
 
     @NotNull(message = "Country is mandatory")
-    @ManyToOne(fetch = FetchType.LAZY)
-    @NotFound(action = NotFoundAction.IGNORE)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    //@NotFound(action = NotFoundAction.IGNORE)
+    @JoinColumn(name="country_id")
     private Country country;
 
     @NotNull(message = "Date is mandatory")
