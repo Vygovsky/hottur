@@ -29,7 +29,7 @@ public class Tur {
     @NotNull(message = "Hotel is mandatory")
     private String nameTur;
 
-    @NotNull(message = "Country is mandatory")
+   @NotNull(message = "Country is mandatory")
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     //@NotFound(action = NotFoundAction.IGNORE)
     @JoinColumn(name="country_id")

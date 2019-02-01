@@ -11,18 +11,18 @@
 <div align="center">
     <h1>Изменить тур</h1>
 </div>
-<form:form method="POST" action="/update?id=${editTour.get().id}">
+<form:form method="POST" action="/update/${editTour.get().id}">
     <div class="form-style-6">
         <table>
             <tr>
                 <td>Номер тура :</td>
-                <td><input type="hidden" value="${editTour.get().id}" readonly="readonly"/></td>
+                <td><input type="hidden" value="${editTour.get().id}" readonly="readonly"/>${editTour.get().id}</td>
             </tr>
             <br/>
 
-                <td>Оператор :</td>
-                <td><input type="text" name="nameTurOperator"
-                           value="<c:out value="${editTour.get().nameTurOperator}" />"/><br></td>
+            <td>Оператор :</td>
+            <td><input type="text" name="nameTurOperator"
+                       value="<c:out value="${editTour.get().nameTurOperator}" />"/><br></td>
             </tr>
 
             <tr>
@@ -37,37 +37,16 @@
             </tr>
             <tr>
                 <td>Страна :</td>
-                <td><label>
-                    <%--<select name="country">
-                        <option selected value="Turkish">Turkish</option>
-                        <option value="Spain">Spain</option>
-                        <option value="Egypt">Egypt</option>
-                        <option value="Usa">Usa</option>
-                    </select>--%>
-                <%--    <select name="countries">
-                        <c:forEach var="countries" items="${countries}">
-                            <option value="${countries.get().country}">${countries.get().country}</option>
-                        </c:forEach>
-
-                    </select>--%>
-            <tr>
-                <td>Country :</td>
-            <td><form:select path="country">
-                    <form:option value="NONE" label="--- Select ---" />
-                <c:forEach var="country" items="${countries}">
-                    <form:option value="${country.country.toString()}"><c:out value="${country.country}"/></form:option>
+            <td><select name="country">
+                <c:forEach var="country" items="${country}">
+                    <option value="${country.id}"
+                        ${country.id == editTour.get().country.id ? 'selected="selected"' : null}>${country.name}</option>
                 </c:forEach>
-                </form:select>
-                <%--<td><form:errors path="country" cssClass="error" /></td>--%>
-            </tr>
-
-                </label>
-                </td>
-            </tr>
+            </td>
             <tr>
                 <td>Дата вылета :</td>
                 <td><input type="datetime-local" name="dateDeparture"
-                    value="<c:out value="${editTour.get().dateDeparture}" />"/></td>
+                           value="<c:out value="${editTour.get().dateDeparture}" />"/></td>
                 <br>
             </tr>
             <tr>

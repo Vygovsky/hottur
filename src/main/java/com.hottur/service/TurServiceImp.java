@@ -13,12 +13,6 @@ import java.util.Optional;
 public class TurServiceImp implements TurServices {
 
     private TurRepository turRepository;
-    private CountryRepository countryRepository;
-
-    @Autowired
-    public void setCountryRepository(CountryRepository countryRepository) {
-        this.countryRepository = countryRepository;
-    }
 
     @Autowired
     public void setTurRepository(TurRepository turRepository) {
